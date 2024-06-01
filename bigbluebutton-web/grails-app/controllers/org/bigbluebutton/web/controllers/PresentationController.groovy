@@ -100,6 +100,7 @@ class PresentationController {
   }
 
   def upload = {
+    log.debug("upload bruh lmfao")
     // check if the authorization token provided is valid
     if (null == params.authzToken || !meetingService.authzTokenIsValid(params.authzToken)) {
       log.debug "WARNING! AuthzToken=" + params.authzToken + " was not valid in meetingId=" + params.conference
@@ -243,6 +244,8 @@ class PresentationController {
   }
 
   def showSvgImage = {
+    log.debug("showSvgImage bruh lmfao")
+
     def presentationName = params.presentation_name
     def conf = params.conference
     def rm = params.room
@@ -253,6 +256,7 @@ class PresentationController {
     InputStream is = null;
     try {
       def pres = presentationService.showSvgImage(conf, rm, presentationName, slide)
+      log.debug("Show svg image"+pres.getAbsolutePath())
       if (pres.exists()) {
         def bytes = pres.readBytes()
         response.addHeader("Cache-Control", "no-cache")

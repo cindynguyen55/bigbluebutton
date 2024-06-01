@@ -1,5 +1,18 @@
 public:
   app:
+    # Special configuration for personal app privacy settings
+    host: 127.0.0.1
+    serverHost: https://bbb30.cindynguyen55.me
+    bbbSecret: QKgEbjHF2dXdCvBe4i4ZMsEe31gK5CnMOvoqtghAto
+    localesUrl: /locale-list
+    pencilChunkLength: 100
+    loadSlidesFromHttpAlways: false
+    # 3.0
+    dropboxAppKey: 4gjhe64n79ubpvo
+    googleClientID: 619629814343-8bk6n12ki49ntob7tm3ifmgq7d1p3h04.apps.googleusercontent.com
+    googleDevKey: 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
+    googleApiKey: AIzaSyCmrXq0uQZxUC8Kr4cW_sNt4za4SiD2oSU
+
     mobileFontSize: 16px
     desktopFontSize: 14px
     audioChatNotification: false
@@ -297,7 +310,7 @@ public:
   externalVideoPlayer:
     enabled: true
   kurento:
-    wsUrl: HOST
+    wsUrl: wss://bigbluebuttonapp.software/bbb-webrtc-sfu
     cameraWsOptions:
       # Valid for video-provider. Time (ms) before its WS connection times out
       # and tries to reconnect.
@@ -841,7 +854,7 @@ public:
     # Number of reconnection attempts of the signaling websocket, before
     # showing to the user there's an audio error.
     audioReconnectionAttempts: 3
-    sipjsHackViaWs: false
+    sipjsHackViaWs: true
     # sipjsAllowMdns: whether mDNS candidates should be allowed in local SDPs.
     # Default is false since FreeSWITCH doesn't resolve mDNS by default.
     sipjsAllowMdns: false
@@ -1120,9 +1133,40 @@ private:
     includeChat: true
   app:
     host: 127.0.0.1
+    serverHost: https://bbb30.cindynguyen55.me    
+    bbbSecret: QKgEbjHF2dXdCvBe4i4ZMsEe31gK5CnMOvoqtghAto
     localesUrl: /locale-list
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
+    # Special configuration for personal app privacy settings
+    # 3.0
+    dropboxAppKey: 4gjhe64n79ubpvo
+    googleClientID: 619629814343-8bk6n12ki49ntob7tm3ifmgq7d1p3h04.apps.googleusercontent.com
+    googleDevKey: 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
+    googleApiKey: AIzaSyCmrXq0uQZxUC8Kr4cW_sNt4za4SiD2oSU
+  redis:
+    host: 127.0.0.1
+    port: '6379'
+    timeout: 5000
+    password: null
+    debug: false
+    metrics:
+      queueMetrics: false
+      metricsDumpIntervalMs: 60000
+      metricsFolderPath: METRICS_FOLDER
+      removeMeetingOnEnd: true
+    channels:
+      toAkkaApps: to-akka-apps-redis-channel
+      toThirdParty: to-third-party-redis-channel
+    subscribeTo:
+      - to-html5-redis-channel
+      - from-akka-apps-[^f]*
+      - from-third-party-redis-channel
+    async:
+      - from-akka-apps-wb-redis-channel
+    ignored:
+      - CheckAlivePongSysMsg
+      - DoLatencyTracerMsg
   serverLog:
     level: info
     streamerLog: false

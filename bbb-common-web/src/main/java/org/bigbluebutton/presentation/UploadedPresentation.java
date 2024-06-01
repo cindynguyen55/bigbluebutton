@@ -42,6 +42,7 @@ public final class UploadedPresentation {
   private boolean current = false;
   private String authzToken;
   private boolean conversionStarted = false;
+  private boolean isExisted = false;
 
   private boolean defaultPresentation;
 
@@ -68,6 +69,7 @@ public final class UploadedPresentation {
     this.uploadFailed = uploadFailed;
     this.uploadFailReason = uploadFailReason;
     this.defaultPresentation = defaultPresentation;
+    this.isExisted = false;
   }
 
   public UploadedPresentation(String podId,
@@ -226,5 +228,13 @@ public final class UploadedPresentation {
   public void generateFilenameConverted(String newExtension) {
     String nameWithoutExtension = FilenameUtils.removeExtension(name);
     this.filenameConverted = nameWithoutExtension.concat("." + newExtension);
+  }
+
+  public boolean getIsExisted() {
+    return this.isExisted;
+  }
+
+  public void setIsExisted(boolean isExisted) {
+    this.isExisted = isExisted;
   }
 }
