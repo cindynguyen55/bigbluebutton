@@ -304,6 +304,7 @@ public class PresentationUrlDownloadService {
         try {
             httpclient.start();
             File download = new File(filename);
+            log.info(filename);
             ZeroCopyConsumer<File> consumer = new ZeroCopyConsumer<File>(download) {
                 @Override
                 protected File process(
