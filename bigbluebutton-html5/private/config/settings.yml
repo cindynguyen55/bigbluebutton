@@ -3,7 +3,7 @@ public:
     # Special configuration for personal app privacy settings
     host: 127.0.0.1
     serverHost: https://bbb30.cindynguyen55.me
-    bbbSecret: QKgEbjHF2dXdCvBe4i4ZMsEe31gK5CnMOvoqtghAto
+    bbbSecret: QKgEbjHF2dXdCvBe4i4ZMsEe31gK5CnMOvoqtghAto 
     localesUrl: /locale-list
     pencilChunkLength: 100
     loadSlidesFromHttpAlways: false
